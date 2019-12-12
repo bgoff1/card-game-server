@@ -4,8 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "tsc": "tsc",
-    "start": "concurrently \"tsc --watch\" \"nodemon .\""
+    "start": "concurrently \"tsc --watch\" \"nodemon .\"",
+    "build": "tsc"
   },
   "author": "Judah Goff",
   "license": "MIT",
