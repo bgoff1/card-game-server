@@ -10,6 +10,7 @@
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
+    "resolveJsonModule": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
