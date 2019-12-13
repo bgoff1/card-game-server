@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "concurrently \"tsc --watch\" \"nodemon .\"",
-    "build": "tsc"
+    "preheroku": "tsc",
+    "heroku": "node ."
   },
   "author": "Judah Goff",
   "license": "MIT",
