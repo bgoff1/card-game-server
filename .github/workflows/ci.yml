@@ -23,6 +23,6 @@ jobs:
     - name: npm install and build
       run: |
         npm ci
-        npm run build
+        npm run preheroku
       env:
         CI: true
