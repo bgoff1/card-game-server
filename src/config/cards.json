@@ -1,0 +1,11 @@
+[
+  {
+    "type": "Skill",
+    "name": "Slash"
+  },
+  {
+    "type": "Minion",
+    "mana": "Bob"
+  },
+  { "type": "Power" }
+]
