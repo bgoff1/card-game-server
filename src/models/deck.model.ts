@@ -1,40 +1,38 @@
-import ranks from '../config/ranks.json';
-import suits from '../config/suits.json';
 import { Card } from './card.model.js';
-import { Hand } from './hand.model.js';
-import { PlayerHands } from './player-hands.model.js';
+import cards from '../config/cards.json';
 
-export class Deck {
+class Deck {
   private deck: Card[];
-  constructor() {
-    this.deck = [];
-    for (let rank = 0; rank < ranks.length; ++rank) {
-      for (let suit = 0; suit < suits.length; ++suit) {
-        this.deck.push(new Card(ranks[rank], suits[suit]));
-      }
-    }
+  constructor(deck?: Card[]) {
+    // if a deck is provided, set deck to be that, otherwise set to empty array
+    this.deck = deck ? deck : [];
     this.shuffleDeck();
   }
 
   shuffleDeck() {
     for (let i = this.deck.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));
       [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
     }
   }
 
-  splitDeck(): PlayerHands {
-    const hand1: Card[] = [];
-    for (let i = 0; i < this.deck.length / 2; ++i) {
-      hand1.push(this.deck[i]);
-    }
-    const hand2: Card[] = [];
-    for (let i = this.deck.length / 2; i < this.deck.length; ++i) {
-      hand2.push(this.deck[i]);
-    }
-    return {
-      playerOne: new Hand(hand1),
-      playerTwo: new Hand(hand2)
-    };
+  // Gets the cards and removes unneeded properties, such as effects and class name
+  getCards() {
+    return this.deck.map(card => {
+      return {
+        name: card.name,
+        description: card.description,
+        cost: card.cost
+      };
+    });
   }
+}
+
+// Creates deck from name of class playing
+// i.e. make a deck from all warrior cards, etc.
+export function createDeck(deckName?: string) {
+  const deckCards: Card[] = deckName
+    ? cards.filter(card => card.class.toLowerCase() === deckName.toLowerCase())
+    : cards;
+  return new Deck(deckCards);
 }

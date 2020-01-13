@@ -1,0 +1,27 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [true, "single"],
+    "interface-name": [true, "never-prefix"],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "constructor",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "member-access": false,
+    "arrow-parens": false,
+    "trailing-comma": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false
+  },
+  "rulesDirectory": []
+}
