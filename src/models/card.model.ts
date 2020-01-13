@@ -1,7 +1,9 @@
-export class Card {
-  manaCost: number;
+import { Effect } from './effect.model';
 
-  constructor(manaCost: number) {
-    this.manaCost = manaCost;
-  }
+export interface Card {
+  name: string;
+  description: string;
+  cost: number;
+  effects: Effect[];
+  class: string;
 }

@@ -1,19 +1,30 @@
 import WebSocket from 'ws';
-import { Deck } from './deck.model';
+import { createDeck } from './deck.model';
+import logger from '../config/logger';
 
 export class Server {
-  wss: WebSocket.Server;
-  playerOneSocket?: WebSocket;
-  playerTwoSocket?: WebSocket;
-  constructor() {
-    console.log(Number(process.env.PORT) || 8080);
+  private static server: Server;
+  private playerOneSocket?: WebSocket;
+  private playerTwoSocket?: WebSocket;
+  private wss: WebSocket.Server;
+
+  private constructor() {
+    logger.debug(Number(process.env.PORT) || 8080);
     this.wss = new WebSocket.Server({ port: Number(process.env.PORT) || 8080 });
     this.setupServer();
   }
 
-  setupServer() {
+  static start() {
+    if (!Server.server) {
+      Server.server = new Server();
+    } else {
+      throw new Error('Server already started!');
+    }
+  }
+
+  private setupServer() {
     this.wss.on('connection', ws => {
-      console.log('Connection established!');
+      logger.info('Connection established!');
 
       if (this.wss.clients.size > 2) {
         for (const connection of this.wss.clients) {
@@ -26,16 +37,17 @@ export class Server {
       }
 
       ws.on('message', message => {
-        console.log('received: %s', message);
+        logger.debug('received: %s');
+        logger.debug(message);
       });
 
       ws.on('close', () => {
-        console.log('Connection closed!');
+        logger.info('Connection closed!');
       });
     });
   }
 
-  setupConnections() {
+  private setupConnections() {
     let index = 0;
     for (const connection of this.wss.clients) {
       if (index === 0) {
@@ -47,13 +59,14 @@ export class Server {
     }
   }
 
-  startGame() {
+  private startGame() {
     if (this.playerOneSocket && this.playerTwoSocket) {
-      const { playerOne, playerTwo } = new Deck().splitDeck();
-      console.log(playerOne.cards);
-      console.log(playerTwo.cards);
-      this.playerOneSocket.send(JSON.stringify(playerOne.cards));
-      this.playerTwoSocket.send(JSON.stringify(playerTwo.cards));
+      const playerOne = createDeck('warrior');
+      const playerTwo = createDeck('rogue');
+      logger.debug(playerOne.getCards());
+      logger.debug(playerTwo.getCards());
+      this.playerOneSocket.send(JSON.stringify(playerOne.getCards()));
+      this.playerTwoSocket.send(JSON.stringify(playerTwo.getCards()));
     }
   }
 }

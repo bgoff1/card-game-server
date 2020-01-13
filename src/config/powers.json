@@ -1,0 +1,9 @@
+{
+  "name": "Combust",
+  "description": "At the end of your turn, take 1 damage and deal 5 damage to ALL enemies.",
+  "cost": 1,
+  "effects": [
+    { "trigger": "end-turn", "type": "take", "value": 1 },
+    { "trigger": "end-turn", "type": "deal-many", "value": 5 }
+  ]
+}

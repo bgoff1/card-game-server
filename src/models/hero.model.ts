@@ -1,6 +1,6 @@
 export class Hero {
   health: number;
-  handSize: number; //may not be necessary or used
+  handSize: number; // may not be necessary or used
   mana: number;
   maxMana: number;
   armor: number;

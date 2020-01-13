@@ -1,11 +1,34 @@
 [
   {
-    "type": "Skill",
-    "name": "Slash"
+    "name": "Iron Wave",
+    "description": "Gain 5 block. Deal 5 damage.",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 5
+      },
+      {
+        "type": "block",
+        "value": 5
+      }
+    ],
+    "class": "Warrior"
   },
   {
-    "type": "Minion",
-    "mana": "Bob"
-  },
-  { "type": "Power" }
+    "name": "Shrug It Off",
+    "description": "Gain 8 block. Draw 1 card.",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "block",
+        "value": 8
+      },
+      {
+        "type": "draw",
+        "value": 1
+      }
+    ],
+    "class": "Warrior"
+  }
 ]
