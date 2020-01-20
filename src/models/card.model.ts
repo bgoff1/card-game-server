@@ -5,5 +5,6 @@ export interface Card {
   description: string;
   cost: number;
   effects: Effect[];
-  class: string;
+  class: string; // this should maybe become a sort of enum?
+  rarity: string; // this should maybe become a sort of enum?
 }
