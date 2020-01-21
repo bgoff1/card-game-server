@@ -26,7 +26,7 @@
         "value": 5
       }
     ],
-    "class": "Warrior",
+    "class": "warrior",
     "rarity": "common"
   },
   {
@@ -44,7 +44,7 @@
       }
     ],
     "rarity": "common",
-    "class": "Warrior"
+    "class": "warrior"
   },
   {
     "name": "Bash",
@@ -61,6 +61,6 @@
       }
     ],
     "rarity": "common",
-    "class": "Warrior"
+    "class": "warrior"
   }
 ]
