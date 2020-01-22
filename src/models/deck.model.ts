@@ -30,9 +30,8 @@ class Deck {
 
 export function numberOfCards(card: Card, deckCards: Card[]) {
   let quantity: number = 0;
-  // tslint:disable-next-line: no-shadowed-variable
-  for (const cards of deckCards) {
-    if (cards.name === card.name) {
+  for (const eachCard of deckCards) {
+    if (eachCard.name === card.name) {
       quantity++;
     }
   }
