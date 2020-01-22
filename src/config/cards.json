@@ -66,5 +66,19 @@
     "rarity": "common",
     "class": "warrior",
     "maxQuantity": 5
+  },
+  {
+    "name": "Slash",
+    "description": "Deal 6 damage.",
+    "class": "Rogue",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter",
+    "maxQuantity": 5
   }
 ]
