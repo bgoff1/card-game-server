@@ -10,7 +10,8 @@
         "value": 6
       }
     ],
-    "rarity": "starter"
+    "rarity": "starter",
+    "maxQuantity": 5
   },
   {
     "name": "Iron Wave",
@@ -27,7 +28,8 @@
       }
     ],
     "class": "warrior",
-    "rarity": "common"
+    "rarity": "common",
+    "maxQuantity": 5
   },
   {
     "name": "Shrug It Off",
@@ -44,7 +46,8 @@
       }
     ],
     "rarity": "common",
-    "class": "warrior"
+    "class": "warrior",
+    "maxQuantity": 5
   },
   {
     "name": "Bash",
@@ -61,6 +64,7 @@
       }
     ],
     "rarity": "common",
-    "class": "warrior"
+    "class": "warrior",
+    "maxQuantity": 5
   }
 ]
