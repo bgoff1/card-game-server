@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@core/*": ["src/*"],
+      "@data/*": ["src/__tests__/data/*"]
+    }
+  },
+  "include": ["./"],
+  "exclude": []
+}

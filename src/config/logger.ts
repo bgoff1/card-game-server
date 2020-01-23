@@ -1,4 +1,5 @@
 import winston from 'winston';
+
 export class Logger {
   logger: winston.Logger;
   constructor() {
@@ -25,17 +26,17 @@ export class Logger {
     return message;
   }
 
-  info(msg: any) {
-    this.logger.info(this.parseMessage(msg));
+  info(message: any) {
+    this.logger.info(this.parseMessage(message));
   }
-  error(msg: any) {
-    this.logger.error(this.parseMessage(msg));
+  error(message: any) {
+    this.logger.error(this.parseMessage(message));
   }
-  debug(msg: any) {
-    this.logger.debug(this.parseMessage(msg));
+  debug(message: any) {
+    this.logger.debug(this.parseMessage(message));
   }
-  warn(msg: any) {
-    this.logger.info(this.parseMessage(msg));
+  warn(message: any) {
+    this.logger.info(this.parseMessage(message));
   }
 }
 

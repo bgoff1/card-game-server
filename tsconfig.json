@@ -16,7 +16,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@core/*": ["src/*"]
+      "@core/*": ["src/*"],
+      "@data/*": ["src/data/*"]
     }
-  }
+  },
+  "exclude": ["src/__tests__/**"]
 }
