@@ -13,6 +13,19 @@
     "rarity": "starter"
   },
   {
+    "name": "Stab",
+    "description": "Deal 6 damage.",
+    "class": "rogue",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter"
+  },
+  {
     "name": "Iron Wave",
     "description": "Gain 5 block. Deal 5 damage.",
     "cost": 1,

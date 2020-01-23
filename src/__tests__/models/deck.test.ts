@@ -1,4 +1,4 @@
-import { createDeck, Deck } from '@core/models/deck.model';
+import { createDeck, Deck } from '@models/deck.model';
 import cards from '@data/cards.json';
 
 test('it should create a deck', () => {

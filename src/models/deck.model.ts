@@ -1,5 +1,5 @@
 import { Card } from './card.model.js';
-import cards from '@data/cards.json';
+import cards from '../data/cards.json';
 
 export class Deck {
   private deck: Card[];

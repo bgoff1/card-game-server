@@ -9,16 +9,11 @@
     "target": "es6",
     "outDir": "lib",
     "rootDir": "src",
-    "baseUrl": "./",
     "strict": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "@core/*": ["src/*"],
-      "@data/*": ["src/data/*"]
-    }
+    "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["src/__tests__/**"]
+  "exclude": ["**/__tests__/**"]
 }
