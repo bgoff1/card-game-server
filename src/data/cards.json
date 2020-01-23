@@ -10,8 +10,20 @@
         "value": 6
       }
     ],
-    "rarity": "starter",
-    "maxQuantity": 5
+    "rarity": "starter"
+  },
+  {
+    "name": "Stab",
+    "description": "Deal 6 damage.",
+    "class": "rogue",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter"
   },
   {
     "name": "Iron Wave",
@@ -28,8 +40,7 @@
       }
     ],
     "class": "warrior",
-    "rarity": "common",
-    "maxQuantity": 5
+    "rarity": "common"
   },
   {
     "name": "Shrug It Off",
@@ -46,8 +57,7 @@
       }
     ],
     "rarity": "common",
-    "class": "warrior",
-    "maxQuantity": 5
+    "class": "warrior"
   },
   {
     "name": "Bash",
@@ -64,21 +74,6 @@
       }
     ],
     "rarity": "common",
-    "class": "warrior",
-    "maxQuantity": 5
-  },
-  {
-    "name": "Slash",
-    "description": "Deal 6 damage.",
-    "class": "Rogue",
-    "cost": 1,
-    "effects": [
-      {
-        "type": "attack",
-        "value": 6
-      }
-    ],
-    "rarity": "starter",
-    "maxQuantity": 5
+    "class": "warrior"
   }
 ]

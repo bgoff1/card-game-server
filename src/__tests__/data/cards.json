@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Strike",
+    "description": "Deal 6 damage.",
+    "class": "Warrior",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter",
+    "maxQuantity": 5
+  },
+  {
+    "name": "Stab",
+    "description": "Deal 6 damage.",
+    "class": "Rogue",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter"
+  },
+  {
+    "name": "Iron Wave",
+    "description": "Gain 5 block. Deal 5 damage.",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 5
+      },
+      {
+        "type": "block",
+        "value": 5
+      }
+    ],
+    "class": "warrior",
+    "rarity": "common",
+    "maxQuantity": 5
+  },
+  {
+    "name": "Shrug It Off",
+    "description": "Gain 8 block. Draw 1 card.",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "block",
+        "value": 8
+      },
+      {
+        "type": "draw",
+        "value": 1
+      }
+    ],
+    "rarity": "common",
+    "class": "warrior",
+    "maxQuantity": 5
+  },
+  {
+    "name": "Bash",
+    "description": "Deal 8 damage. Apply 2 Vulnerable.",
+    "cost": 2,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 8
+      },
+      {
+        "type": "vulnerable",
+        "value": 2
+      }
+    ],
+    "rarity": "common",
+    "class": "warrior",
+    "maxQuantity": 5
+  },
+  {
+    "name": "Slash",
+    "description": "Deal 6 damage.",
+    "class": "Rogue",
+    "cost": 1,
+    "effects": [
+      {
+        "type": "attack",
+        "value": 6
+      }
+    ],
+    "rarity": "starter",
+    "maxQuantity": 5
+  }
+]
