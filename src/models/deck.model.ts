@@ -33,7 +33,20 @@ export class Deck {
 // i.e. make a deck from all warrior cards, etc.
 export function createDeck(deckName?: string) {
   const deckCards: Card[] = deckName
-    ? cards.filter(card => card.class.toLowerCase() === deckName.toLowerCase())
+    ? cards.filter(
+        card =>
+          card.class.toLowerCase() === deckName.toLowerCase() &&
+          card.rarity.toLowerCase() === 'starter' // is a starter deck card
+      )
     : cards;
+  // if the number of this card is less than it's maxQuantity
+  for (const card of deckCards) {
+    while (
+      deckCards.filter(eachCard => eachCard.name === card.name).length <
+      card.maxQuantity
+    ) {
+      deckCards.push(card);
+    }
+  }
   return new Deck(deckCards);
 }
