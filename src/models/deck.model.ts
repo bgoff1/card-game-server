@@ -29,16 +29,6 @@ export class Deck {
   }
 }
 
-export function numberOfCards(card: Card, deckCards: Card[]) {
-  let quantity: number = 0;
-  for (const eachCard of deckCards) {
-    if (eachCard.name === card.name) {
-      quantity++;
-    }
-  }
-  return quantity;
-}
-
 // Creates deck from name of class playing
 // i.e. make a deck from all warrior cards, etc.
 export function createDeck(deckName?: string) {
@@ -50,11 +40,13 @@ export function createDeck(deckName?: string) {
       )
     : cards;
   // if the number of this card is less than it's maxQuantity
-  deckCards.forEach(card => {
-    while (numberOfCards(card, deckCards) < card.maxQuantity) {
-      // push the card back on the deck again
+  for (const card of deckCards) {
+    while (
+      deckCards.filter(eachCard => eachCard.name === card.name).length <
+      card.maxQuantity
+    ) {
       deckCards.push(card);
     }
-  });
+  }
   return new Deck(deckCards);
 }
