@@ -1,6 +1,7 @@
 import WebSocket from 'ws';
-import { createDeck } from './deck.model';
+import { createDeck, Deck } from './deck.model';
 import logger from '../config/logger';
+import { Game } from './game.model';
 
 export class Server {
   private static server: Server;
@@ -61,12 +62,11 @@ export class Server {
 
   private startGame() {
     if (this.playerOneSocket && this.playerTwoSocket) {
-      const playerOne = createDeck('warrior');
-      const playerTwo = createDeck('rogue');
-      logger.debug(playerOne.getCards());
-      logger.debug(playerTwo.getCards());
-      this.playerOneSocket.send(JSON.stringify(playerOne.getCards()));
-      this.playerTwoSocket.send(JSON.stringify(playerTwo.getCards()));
+      const game = new Game();
+      logger.debug(game.playerOne.hand.getCards());
+      logger.debug(game.playerTwo.hand.getCards());
+      this.playerOneSocket.send(JSON.stringify(game.playerOne.hand.getCards()));
+      this.playerTwoSocket.send(JSON.stringify(game.playerTwo.hand.getCards()));
     }
   }
 }
