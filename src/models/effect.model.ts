@@ -1,5 +1,7 @@
+import { EffectType } from './effect-type.model';
+
 export interface Effect {
-    type: string;
+    type: EffectType;
     value: number;
     trigger?: string;
 }

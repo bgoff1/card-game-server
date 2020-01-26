@@ -37,10 +37,11 @@ export class Server {
         this.startGame();
       }
 
-      ws.on('message', message => {
-        logger.debug('received: %s');
-        logger.debug(message);
-      });
+      // ws.on('message', message => {
+      //   logger.debug('received: %s');
+      //   logger.debug(message);
+      //   const card = JSON.parse(message.toString());
+      // });
 
       ws.on('close', () => {
         logger.info('Connection closed!');
@@ -63,6 +64,21 @@ export class Server {
   private startGame() {
     if (this.playerOneSocket && this.playerTwoSocket) {
       const game = new Game();
+
+      this.playerOneSocket.on('message', message => {
+        logger.debug('received: %s');
+        logger.debug(message);
+        const card = JSON.parse(message.toString());
+        game.playCard(card, 'playerOne');
+      });
+
+      this.playerTwoSocket.on('message', message => {
+        logger.debug('received: %s');
+        logger.debug(message);
+        const card = JSON.parse(message.toString());
+        game.playCard(card, 'playerTwo');
+      });
+
       logger.debug(game.playerOne.hand.getCards());
       logger.debug(game.playerTwo.hand.getCards());
       this.playerOneSocket.send(JSON.stringify(game.playerOne.hand.getCards()));
