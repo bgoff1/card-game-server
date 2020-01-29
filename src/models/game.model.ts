@@ -1,6 +1,5 @@
 import { Player } from './player.model';
 import { Card } from './card.model';
-import logger from '../config/logger';
 
 export class Game {
   playerOne: Player;
@@ -12,7 +11,6 @@ export class Game {
   }
 
   playCard(card: Card, playedBy: 'playerOne' | 'playerTwo') {
-    logger.debug(`${playedBy} playing ${JSON.stringify(card)}`);
     if (playedBy === 'playerOne') {
       for (const effect of card.effects) {
         if (effect.type === 'attack') {
@@ -25,6 +23,14 @@ export class Game {
           this.playerOne.hero.takeDamage(effect.value);
         }
       }
+    }
+  }
+
+  getPlayersHealth(player: 'playerOne' | 'playerTwo') {
+    if (player === 'playerOne') {
+      return { me: this.playerOne.hero, you: this.playerTwo.hero };
+    } else {
+      return { me: this.playerTwo.hero, you: this.playerOne.hero };
     }
   }
 }

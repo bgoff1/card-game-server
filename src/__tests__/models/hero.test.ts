@@ -3,7 +3,7 @@ import { Hero } from '@models/hero.model';
 let hero: Hero;
 
 beforeEach(() => {
-  hero = new Hero();
+  hero = new Hero('warrior');
 });
 
 test('it should do something', () => {
@@ -12,6 +12,7 @@ test('it should do something', () => {
   expect(hero.armor).toEqual(0);
   expect(hero.mana).toEqual(1);
   expect(hero.maxMana).toEqual(10);
+  expect(hero.heroClass).toEqual('warrior');
 });
 
 test('it should take damage', () => {

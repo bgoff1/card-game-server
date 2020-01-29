@@ -1,12 +1,11 @@
 import WebSocket from 'ws';
-import { createDeck, Deck } from './deck.model';
 import logger from '../config/logger';
 import { Game } from './game.model';
 
 export class Server {
   private static server: Server;
-  private playerOneSocket?: WebSocket;
-  private playerTwoSocket?: WebSocket;
+  private playerOneSocket!: WebSocket;
+  private playerTwoSocket!: WebSocket;
   private wss: WebSocket.Server;
 
   private constructor() {
@@ -26,22 +25,29 @@ export class Server {
   private setupServer() {
     this.wss.on('connection', ws => {
       logger.info('Connection established!');
-
-      if (this.wss.clients.size > 2) {
+      if (this.wss.clients.size === 1) {
         for (const connection of this.wss.clients) {
-          connection.close();
+          this.playerOneSocket = connection;
         }
       }
       if (this.wss.clients.size === 2) {
-        this.setupConnections();
+        for (const connection of this.wss.clients) {
+          if (connection !== this.playerOneSocket) {
+            this.playerTwoSocket = connection;
+          }
+        }
         this.startGame();
       }
-
-      // ws.on('message', message => {
-      //   logger.debug('received: %s');
-      //   logger.debug(message);
-      //   const card = JSON.parse(message.toString());
-      // });
+      if (this.wss.clients.size > 2) {
+        for (const connection of this.wss.clients) {
+          if (
+            connection !== this.playerOneSocket &&
+            connection !== this.playerTwoSocket
+          ) {
+            connection.close();
+          }
+        }
+      }
 
       ws.on('close', () => {
         logger.info('Connection closed!');
@@ -49,40 +55,58 @@ export class Server {
     });
   }
 
-  private setupConnections() {
-    let index = 0;
-    for (const connection of this.wss.clients) {
-      if (index === 0) {
-        this.playerOneSocket = connection;
-      } else {
-        this.playerTwoSocket = connection;
-      }
-      ++index;
-    }
-  }
-
   private startGame() {
-    if (this.playerOneSocket && this.playerTwoSocket) {
-      const game = new Game();
+    const game = new Game();
 
-      this.playerOneSocket.on('message', message => {
-        logger.debug('received: %s');
-        logger.debug(message);
-        const card = JSON.parse(message.toString());
-        game.playCard(card, 'playerOne');
-      });
+    this.playerOneSocket.on('message', message => {
+      const card = JSON.parse(message.toString());
+      game.playCard(card, 'playerOne');
+      this.playerTwoSocket.send(
+        JSON.stringify({
+          type: 'cardPlayed',
+          card,
+          players: game.getPlayersHealth('playerTwo')
+        })
+      );
+      this.playerOneSocket.send(
+        JSON.stringify({
+          type: 'updateHeros',
+          players: game.getPlayersHealth('playerOne')
+        })
+      );
+    });
 
-      this.playerTwoSocket.on('message', message => {
-        logger.debug('received: %s');
-        logger.debug(message);
-        const card = JSON.parse(message.toString());
-        game.playCard(card, 'playerTwo');
-      });
+    this.playerTwoSocket.on('message', message => {
+      const card = JSON.parse(message.toString());
+      game.playCard(card, 'playerTwo');
+      this.playerOneSocket.send(
+        JSON.stringify({
+          type: 'cardPlayed',
+          card,
+          players: game.getPlayersHealth('playerOne')
+        })
+      );
+      this.playerTwoSocket.send(
+        JSON.stringify({
+          type: 'updateHeros',
+          players: game.getPlayersHealth('playerTwo')
+        })
+      );
+    });
 
-      logger.debug(game.playerOne.hand.getCards());
-      logger.debug(game.playerTwo.hand.getCards());
-      this.playerOneSocket.send(JSON.stringify(game.playerOne.hand.getCards()));
-      this.playerTwoSocket.send(JSON.stringify(game.playerTwo.hand.getCards()));
-    }
+    this.playerOneSocket.send(
+      JSON.stringify({
+        type: 'start',
+        player: game.playerOne,
+        players: game.getPlayersHealth('playerOne')
+      })
+    );
+    this.playerTwoSocket.send(
+      JSON.stringify({
+        type: 'start',
+        player: game.playerTwo,
+        players: game.getPlayersHealth('playerTwo')
+      })
+    );
   }
 }

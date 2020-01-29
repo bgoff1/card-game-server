@@ -1,9 +1,8 @@
-import { Card, formatCard } from './card.model.js';
+import { Card, formatCard } from './card.model';
 import cards from '../data/cards.json';
-import { EffectType } from './effect-type.model.js';
 
 export class Deck {
-  private deck: Card[];
+  deck: Card[];
   constructor(deck?: Card[]) {
     // if a deck is provided, set deck to be that, otherwise set to empty array
     this.deck = deck ? deck : [];
@@ -19,16 +18,16 @@ export class Deck {
   // }
 
   // Gets the cards and removes unneeded properties, such as effects and class name
-  getCards() {
-    return this.deck;
-    // .map(card => {
-    //   return {
-    //     name: card.name,
-    //     description: card.description,
-    //     cost: card.cost
-    //   };
-    // });
-  }
+  // getCards() {
+  // return this.deck;
+  // .map(card => {
+  //   return {
+  //     name: card.name,
+  //     description: card.description,
+  //     cost: card.cost
+  //   };
+  // });
+  // }
 }
 
 // Creates deck from name of class playing
